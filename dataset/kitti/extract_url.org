@@ -4,8 +4,15 @@
 This is the python code to extract the url of the kitti dataset from the kitti home page.
 * Download the HomePage with HTTP Get
 ** Get the linked page
+*** Import the urllib library (GET)
 #+BEGIN_SRC ipython :session 
   import urllib.request
+#+END_SRC
+
+#+results:
+
+*** Get the HTML page in byte version
+#+BEGIN_SRC ipython :session
   residential = urllib.request.urlopen("http://www.cvlibs.net/datasets/kitti/raw_data.php?type=residential").read()
 #+END_SRC
 
@@ -13,6 +20,57 @@ This is the python code to extract the url of the kitti dataset from the kitti h
 ** Transfer the byte code into unicode-8
 #+BEGIN_SRC ipython :session
   residential = residential.decode('utf-8')
+#+END_SRC
+
+#+results:
+* Parser the HTML page 
+Here I use the Beautiful soup to parser the HTML page I get from the kitti's dataset.
+** Import the beautiful soup library
+#+BEGIN_SRC ipython :session
+  from bs4 import BeautifulSoup
+#+END_SRC
+
+#+results:
+** Parser the HTML page 
+#+BEGIN_SRC ipython :session
+  residential_soup = BeautifulSoup(residential, 'html.parser')
+#+END_SRC
+
+#+results:
+** Find the download url
+#+BEGIN_SRC ipython :session 
+  link_list = [link.get('href') for link in residential_soup.find_all('a')]
+#+END_SRC
+
+#+results:
+** Select the url I need
+with the prefix http://kitti.is.tue.mpg.de/kitti/raw_data/
+#+BEGIN_SRC ipython :session
+  dataset_link_list = [x for x in link_list if 'http://kitti.is.tue.mpg.de/kitti/raw_data/' in x]
+#+END_SRC
+
+#+results:
+*** Extract Part
+#+BEGIN_SRC ipython :session 
+  extract_link = [x for x in dataset_link_list if 'extract' in x]
+#+END_SRC
+
+#+results:
+*** Sync data
+#+BEGIN_SRC ipython :session 
+  sync_link = [x for x in dataset_link_list if 'sync' in x]
+#+END_SRC
+
+*** Calib data
+#+BEGIN_SRC ipython :session 
+  calib_link = [x for x in dataset_link_list if 'calib' in x]
+#+END_SRC
+
+#+results:
+
+*** Tracklets data
+#+BEGIN_SRC ipython :session 
+  tracklets_link = [x for x in dataset_link_list if 'tracklets' in x]
 #+END_SRC
 
 #+results:
