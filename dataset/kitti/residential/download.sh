@@ -1,34 +1,34 @@
 #! bin/sh
 mkdir -p Tract
-cp residentialTract.txt Tract
+cp tracklets.txt Tract
 cd Tract
 while read line; do
     wget line
-done < residentialTract.txt
+done < tracklets.txt
 cd ..
 
 mkdir -p Sync
-cp residentialSyn.txt Sync
+cp sync.txt Sync
 cd Sync
 while read line; do
     wget $line
-done < residentialSyn.txt
+done < sync.txt
 cd ..
 
 mkdir -p Calib
-cp residentialCalib.txt Calib
+cp calib.txt Calib
 cd Calib
 while read line; do
     wget $line
-done < residentialCalib.txt
+done < calib.txt
 cd ..
 
 mkdir -p Extract
-cp residentialExtract.txt Extract
+cp extract.txt Extract
 cd Extract
 while read line; do
     wget $line
-done < residentialExtract.txt
+done < extract.txt
 cd ..
 
 
