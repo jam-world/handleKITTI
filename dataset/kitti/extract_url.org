@@ -90,6 +90,7 @@ with the prefix http://kitti.is.tue.mpg.de/kitti/raw_data/
 #+BEGIN_SRC ipython :session
   f_extract = open(base + "extract.txt","w")
   f_extract.write('\n'.join(extract_link[0:2]))
+  f_extract.write('\n')
   f_extract.close()
 #+END_SRC
 
@@ -98,6 +99,7 @@ with the prefix http://kitti.is.tue.mpg.de/kitti/raw_data/
 #+BEGIN_SRC ipython :session
   f_sync = open(base + "sync.txt","w")
   f_sync.write('\n'.join(sync_link[0:2]))
+  f_sync.write('\n')
   f_sync.close()
 #+END_SRC
 
@@ -106,6 +108,7 @@ with the prefix http://kitti.is.tue.mpg.de/kitti/raw_data/
 #+BEGIN_SRC ipython :session
   f_calib = open(base + "calib.txt","w")
   f_calib.write('\n'.join(calib_link[0:2]))
+  f_calib.write('\n')
   f_calib.close()
 #+END_SRC
 
@@ -115,6 +118,7 @@ with the prefix http://kitti.is.tue.mpg.de/kitti/raw_data/
 #+BEGIN_SRC ipython :session
   f_tracklets = open(base + "tracklets.txt","w")
   f_tracklets.write('\n'.join(tracklets_link[0:2]))
+  f_tracklets.write('\n')
   f_tracklets.close()
 #+END_SRC
 
